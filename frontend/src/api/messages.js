@@ -12,7 +12,7 @@ const getAuthHeaders = () => {
  //Fetch all messages from backend
  
 export const getMessages = async () => {
-  const response = await fetch(`${API_URL}/messages`);
+  const response = await fetch(`${API_URL}/api/messages`);
   if (!response.ok) {
     throw new Error('Failed to fetch messages');
   }
@@ -24,7 +24,7 @@ export const getMessages = async () => {
  
  
 export const createMessage = async (messageData) => {
-  const response = await fetch(`${API_URL}/messages`, {
+  const response = await fetch(`${API_URL}/api/messages`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export const createMessage = async (messageData) => {
  //Delete a message
  
 export const deleteMessage = async (id) => {
-  const response = await fetch(`${API_URL}/messages/${id}`, {
+  const response = await fetch(`${API_URL}/api/messages/${id}`, {
     method: 'DELETE',
     headers: getAuthHeaders()
   });
