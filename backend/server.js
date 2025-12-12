@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const jwt = require('jsonwebtoken');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 10000;
 const cors = require("cors");  
 
 // Middleware
@@ -288,5 +288,5 @@ app.delete('/api/messages/:id', auth, async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://${process.env.VITE_API_BASE_URL || 'localhost'}:${PORT}`);
 });
