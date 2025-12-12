@@ -1,9 +1,8 @@
-// Base URL for all API calls - change this for deployment
 const API_URL = 'http://localhost:3001/api';
 
-/**
- * Get auth headers with token if available
- */
+
+ //Get auth headers with token if available
+ 
 const getAuthHeaders = () => {
   const token = localStorage.getItem('token');
   return token ? { 'Authorization': `Bearer ${token}` } : {};
@@ -22,7 +21,7 @@ export const getMessages = async () => {
 
 
  // Create a new message
- //@param {Object} messageData //- { content: string }
+ 
  
 export const createMessage = async (messageData) => {
   const response = await fetch(`${API_URL}/messages`, {

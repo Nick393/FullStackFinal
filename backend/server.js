@@ -55,7 +55,7 @@ app.post('/api/auth/signup', async (req, res) => {
       });
     }
 
-    // Create new user
+    //create new user
     const user = new User({ username, email, password });
     await user.save();
 
