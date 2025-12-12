@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001/api';
+const API_URL = 'https://focustools-backend-nick393.onrender.com';
 
 
  //Get auth headers with token if available
