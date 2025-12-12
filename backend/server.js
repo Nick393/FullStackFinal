@@ -9,7 +9,7 @@ const cors = require("cors");
 
 // Middleware
 app.use(cors(
-  {origin: process.env.CLIENT_ORIGIN || 'https://focustools-nick393.onrender.com'}
+  {origin: '*'}
 ));  
 app.use(express.json());
 
