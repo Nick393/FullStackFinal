@@ -288,5 +288,5 @@ app.delete('/api/messages/:id', auth, async (req, res) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://${process.env.VITE_API_BASE_URL || 'localhost'}:${PORT}`);
+  console.log(`Server running on http://${process.env.HOST || 'localhost'}:${PORT}`);
 });
