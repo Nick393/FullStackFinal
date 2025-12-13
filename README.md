@@ -23,7 +23,7 @@ Video Link: https://drive.google.com/file/d/1lI84M1DliQ_XHyGKnkc9mY-4g4pY_8hk/vi
 Reflection:
 1. The hardest parts of the project were setting up the authentication, the delete, and update systems.  These required extensive debugging to get them to work.  
 2. I am most proud of the authentication system.  I am passionate about cybersecurity, so I wanted to do the authentication feature.  
-3.  I would start earlier, rather than cramming at the end, as that would make debugging less stressful.  
+3.  I would start earlier, rather than cramming at the end, as that would make debugging less stressful (especially in regards to getting the app to work on the hosting providers).
 4. It was suggested to allow users to edit messages at the check-in gallery.  I was only at the check in gallery for part of it unfortunately due to having an exam immediately prior.  
 
 AI: 
