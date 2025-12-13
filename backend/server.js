@@ -204,41 +204,6 @@ app.get('/api/messages', async (req, res) => {
   }
 });
 
-// Get a specific message
-app.get('/api/messages/:id', async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    // Validate ObjectId format
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-      return res.status(404).json({
-        error: 'Message not found',
-        message: 'Invalid message ID format'
-      });
-    }
-
-    // Find message by ID
-    const message = await Message.findById(id);
-
-    // Check if message exists
-    if (!message) {
-      return res.status(404).json({
-        error: 'Message not found',
-        message: `Message with ID ${id} not found`
-      });
-    }
-
-    // Return the message
-    res.status(200).json(message);
-
-  } catch (err) {
-    res.status(500).json({
-      error: 'Server error',
-      message: err.message
-    });
-  }
-});
-
 // Update a message
 app.put('/api/messages/:id', auth, async (req, res) => {
   try {

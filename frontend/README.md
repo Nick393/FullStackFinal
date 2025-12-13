@@ -8,3 +8,5 @@ The setup process is relatively simple.  Each section can be loaded into a cloud
 The environment variables used are: the MongoDB URI, and the JWT_SECRET.  
 
 I used GitHub Copilot Agent to debug the authentication portions as I wrote them.  I also used it to debug the issues that came up upon moving the app from the local machine to the cloud.  
+
+Video Link: https://drive.google.com/file/d/1lI84M1DliQ_XHyGKnkc9mY-4g4pY_8hk/view?usp=sharing
