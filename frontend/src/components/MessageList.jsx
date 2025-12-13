@@ -1,6 +1,6 @@
 import MessageItem from './MessageItem';
 
-function MessageList({ messages, onDeleteMessage, currentUserId }) {
+function MessageList({ messages, onDeleteMessage, onUpdateMessage, currentUserId }) {
   if (messages.length === 0) {
     return (
       <div className="empty-state">
@@ -16,6 +16,7 @@ function MessageList({ messages, onDeleteMessage, currentUserId }) {
           key={message._id}
           message={message}
           onDelete={() => onDeleteMessage(message._id)}
+          onUpdate={(newContent) => onUpdateMessage(message._id, newContent)}
           currentUserId={currentUserId}
         />
       ))}

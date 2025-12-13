@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import MessageList from './components/MessageList';
 import AuthForm from './components/AuthForm';
-import { getMessages, createMessage, deleteMessage } from './api/messages';
+import { getMessages, createMessage, updateMessage, deleteMessage } from './api/messages';
 import { useAuth } from './contexts/AuthContext';
 
 function App() {
@@ -63,9 +63,25 @@ function App() {
     }
   };
 
-  
+
+  //Update a message
+
+  const handleUpdateMessage = async (messageId, newContent) => {
+    try {
+      //update in database
+      const updatedMessage = await updateMessage(messageId, { content: newContent });
+
+      //update React state
+      setMessages(messages.map(m => m._id === messageId ? updatedMessage : m));
+    } catch (err) {
+      console.error('Error updating message:', err);
+      setError('Failed to update message. Please try again.');
+    }
+  };
+
+
   //Delete a message
-   
+
   const handleDeleteMessage = async (messageId) => {
     try {
       //delete from database
@@ -162,6 +178,7 @@ function App() {
           <MessageList
             messages={messages}
             onDeleteMessage={handleDeleteMessage}
+            onUpdateMessage={handleUpdateMessage}
             currentUserId={user.id}
           />
         </div>

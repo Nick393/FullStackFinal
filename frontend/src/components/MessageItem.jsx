@@ -1,4 +1,9 @@
-function MessageItem({ message, onDelete, currentUserId }) {
+import { useState } from 'react';
+
+function MessageItem({ message, onDelete, onUpdate, currentUserId }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [editContent, setEditContent] = useState(message.content);
+
   // Format timestamp
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -22,25 +27,83 @@ function MessageItem({ message, onDelete, currentUserId }) {
 
   const isOwnMessage = message.user && message.user._id === currentUserId;
 
+  const handleEdit = () => {
+    setIsEditing(true);
+    setEditContent(message.content);
+  };
+
+  const handleSave = () => {
+    if (editContent.trim() && editContent !== message.content) {
+      onUpdate(editContent);
+    }
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setEditContent(message.content);
+    setIsEditing(false);
+  };
+
   return (
     <div className="message-item">
       <div className="message-content">
-        <p className="message-text">{message.content}</p>
+        {isEditing ? (
+          <textarea
+            value={editContent}
+            onChange={(e) => setEditContent(e.target.value)}
+            className="message-input edit-input"
+            rows="3"
+            maxLength="1000"
+            autoFocus
+          />
+        ) : (
+          <p className="message-text">{message.content}</p>
+        )}
         <div className="message-meta">
           <span className="message-author">{message.user?.username || 'Anonymous'}</span>
           <span className="message-time">{formatDate(message.createdAt)}</span>
         </div>
       </div>
 
-      {/* Only show delete button for user's own messages */}
+      {/* Only show action buttons for user's own messages */}
       {isOwnMessage && (
-        <button
-          onClick={onDelete}
-          className="delete-button"
-          aria-label="Delete message"
-        >
-          Delete
-        </button>
+        <div className="message-actions">
+          {isEditing ? (
+            <>
+              <button
+                onClick={handleSave}
+                className="save-button"
+                aria-label="Save message"
+              >
+                Save
+              </button>
+              <button
+                onClick={handleCancel}
+                className="cancel-button"
+                aria-label="Cancel editing"
+              >
+                Cancel
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={handleEdit}
+                className="edit-button"
+                aria-label="Edit message"
+              >
+                Edit
+              </button>
+              <button
+                onClick={onDelete}
+                className="delete-button"
+                aria-label="Delete message"
+              >
+                Delete
+              </button>
+            </>
+          )}
+        </div>
       )}
     </div>
   );

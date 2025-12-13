@@ -1,16 +1,10 @@
-# React + Vite
+For my final project, I chose to build a message board application.  This app allows users to create accounts, and then post messages to the message board.  Users can delete messages they post.  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project uses a MERN Stack.  It is hosted across three different cloud backed platforms.  The frontend is on Netlify, the backend on Render, and the database is on MongoDB cloud.  
 
-Currently, two official plugins are available:
+The project features the ability for users to make posts to a messageboard.  The idea is that an organization would host an instance of the messageboard for their members or community.  
+The setup process is relatively simple.  Each section can be loaded into a cloud backed provider or run on a local server.  Once this is done, change the API URL to be that of where the backend is hosted.  You may also have to adjust the CORS settings to make allow communication between the frontend and backend.  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The environment variables used are: the MongoDB URI, and the JWT_SECRET.  
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+I used GitHub Copilot Agent to debug the authentication portions as I wrote them.  I also used it to debug the issues that came up upon moving the app from the local machine to the cloud.  

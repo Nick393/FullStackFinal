@@ -38,8 +38,25 @@ export const createMessage = async (messageData) => {
   return response.json();
 };
 
+ // Update a message
+
+export const updateMessage = async (id, messageData) => {
+  const response = await fetch(`${API_URL}/api/messages/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      ...getAuthHeaders()
+    },
+    body: JSON.stringify(messageData)
+  });
+  if (!response.ok) {
+    throw new Error('Failed to update message');
+  }
+  return response.json();
+};
+
  //Delete a message
- 
+
 export const deleteMessage = async (id) => {
   const response = await fetch(`${API_URL}/api/messages/${id}`, {
     method: 'DELETE',
