@@ -239,6 +239,72 @@ app.get('/api/messages/:id', async (req, res) => {
   }
 });
 
+// Update a message
+app.put('/api/messages/:id', auth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { content } = req.body;
+
+    // Validate ObjectId format
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(404).json({
+        error: 'Message not found',
+        message: 'Invalid message ID format'
+      });
+    }
+
+    // Check if content exists
+    if (!content || content.trim() === '') {
+      return res.status(400).json({
+        error: 'Validation error',
+        message: 'Message content is required'
+      });
+    }
+
+    // Find message by ID
+    const message = await Message.findById(id);
+
+    // Check if message exists
+    if (!message) {
+      return res.status(404).json({
+        error: 'Message not found',
+        message: `Message with ID ${id} not found`
+      });
+    }
+
+    // Check if user owns the message
+    if (message.user.toString() !== req.user._id.toString()) {
+      return res.status(403).json({
+        error: 'Forbidden',
+        message: 'You can only update your own messages'
+      });
+    }
+
+    // Update message content
+    message.content = content.trim();
+    const updatedMessage = await message.save();
+
+    // Populate user info
+    await updatedMessage.populate('user', 'username');
+
+    // Return updated message
+    res.status(200).json(updatedMessage);
+
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      return res.status(400).json({
+        error: 'Validation error',
+        message: err.message
+      });
+    }
+
+    res.status(500).json({
+      error: 'Server error',
+      message: err.message
+    });
+  }
+});
+
 // Delete a message
 app.delete('/api/messages/:id', auth, async (req, res) => {
   try {
